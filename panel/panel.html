@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- UIkit CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.17.8/dist/css/uikit.min.css" />
+
+  <!-- UIkit JS -->
+  <script src="uikit.min.js"></script>
+  <script src="uikit-icons.min.js"></script>
+  <title>Token Extractor</title>
+  <style>
+    body {
+      padding: 20px;
+    }
+
+    .toggle-container {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="uk-container">
+    <h2 class="uk-text-lead">Token Inspector</h2>
+    <a class="uk-link-muted" target="_blank" href="https://www.github.com/Guuri11" uk-icon="icon: github"></a>
+    <a class="uk-link-muted" target="_blank" href="https://www.linkedin.com/in/sergio-gurillo-corral/" uk-icon="icon: linkedin"></a>
+    <div class="toggle-container">
+      <label class="uk-text-large">Include bearer word:</label>
+      <input type="checkbox" id="include-bearer-toggle">
+    </div>
+    <div class="output-container uk-grid" id="output-container">
+
+    </div>
+  </div>
+  <script src="panel.js"></script>
+</body>
+
+</html>
