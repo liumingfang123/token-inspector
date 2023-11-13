@@ -1,4 +1,17 @@
+// panel.js
+const outputContainer = document.getElementById("output-container");
 const includeBearerToggle = document.getElementById("include-bearer-toggle");
+
+function handleRequestFinished(request) {
+  const hasToken = request.request.headers.some((header) => {
+    return header.name.toLowerCase() === "authorization";
+  });
+
+  // Si la solicitud tiene un encabezado de Authorization, actualiza el panel
+  if (hasToken) {
+    updatePanel();
+  }
+}
 
 function extractTokensFromHAR(requests) {
   return requests.entries
@@ -20,16 +33,22 @@ function displayTokens(tokens) {
   const outputContainer = document.getElementById("output-container");
   tokens.forEach((token) => {
     const container = document.createElement("div");
-    container.classList.add("uk-margin")
+    container.classList.add("uk-margin");
     const card = document.createElement("div");
-    card.classList.add("uk-card", "uk-card-default", "uk-card-body")
+    card.classList.add("uk-card", "uk-card-default", "uk-card-body");
 
     const urlTitle = document.createElement("h6");
     urlTitle.classList.add("uk-card-title", "uk-text-default");
     urlTitle.innerText = token.url;
 
     const inspectButton = document.createElement("button");
-    inspectButton.classList.add("uk-button", "uk-margin-right", "uk-button-primary", "uk-text-default", "uk-text-capitalize")
+    inspectButton.classList.add(
+      "uk-button",
+      "uk-margin-right",
+      "uk-button-primary",
+      "uk-text-default",
+      "uk-text-capitalize"
+    );
     inspectButton.innerText = "Inspect token in jwt.io";
     inspectButton.addEventListener("click", () => {
       const jwtInspectUrl = `https://jwt.io/?token=${encodeURIComponent(
@@ -39,7 +58,12 @@ function displayTokens(tokens) {
     });
 
     const copyButton = document.createElement("button");
-    copyButton.classList.add("uk-button", "uk-button-secondary", "uk-text-default", "uk-text-capitalize")
+    copyButton.classList.add(
+      "uk-button",
+      "uk-button-secondary",
+      "uk-text-default",
+      "uk-text-capitalize"
+    );
     copyButton.innerText = "Copy token";
     copyButton.addEventListener("click", () => {
       copyToClipboard(getToken(token));
@@ -69,7 +93,31 @@ function copyToClipboard(text) {
   textField.remove();
 }
 
-chrome.devtools.network.getHAR(function (requests) {
-  const tokens = extractTokensFromHAR(requests);
-  displayTokens(tokens);
-});
+function updatePanel() {
+  // Limpiar datos antiguos.
+  outputContainer.innerHTML = "";
+
+  // Obtener el HAR actualizado.
+  chrome.devtools.network.getHAR(function (requests) {
+    const includeBearerToggle = document.getElementById(
+      "include-bearer-toggle"
+    );
+    includeBearerToggle.addEventListener("change", () => {
+      document.getElementById("output-container").innerHTML = "";
+      const tokens = extractTokensFromHAR(requests);
+      displayTokens(tokens);
+    });
+
+    const tokens = extractTokensFromHAR(requests);
+    displayTokens(tokens);
+  });
+}
+
+// Este método es llamado siempre que una solicitud de red se completa.
+chrome.devtools.network.onRequestFinished.addListener(handleRequestFinished);
+
+// Escuchar cambios en el checkbox.
+includeBearerToggle.addEventListener("change", updatePanel);
+
+// LLamada inicial para rellenar los datos al abrir el panel.
+updatePanel();
