@@ -7,7 +7,6 @@ function handleRequestFinished(request) {
     return header.name.toLowerCase() === "authorization";
   });
 
-  // Si la solicitud tiene un encabezado de Authorization, actualiza el panel
   if (hasToken) {
     updatePanel();
   }
@@ -94,10 +93,8 @@ function copyToClipboard(text) {
 }
 
 function updatePanel() {
-  // Limpiar datos antiguos.
   outputContainer.innerHTML = "";
 
-  // Obtener el HAR actualizado.
   chrome.devtools.network.getHAR(function (requests) {
     const includeBearerToggle = document.getElementById(
       "include-bearer-toggle"
@@ -113,11 +110,8 @@ function updatePanel() {
   });
 }
 
-// Este método es llamado siempre que una solicitud de red se completa.
 chrome.devtools.network.onRequestFinished.addListener(handleRequestFinished);
 
-// Escuchar cambios en el checkbox.
 includeBearerToggle.addEventListener("change", updatePanel);
 
-// LLamada inicial para rellenar los datos al abrir el panel.
 updatePanel();
