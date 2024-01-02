@@ -1,7 +1,7 @@
 {
   "name": "Token Devtools Inspector",
   "description": "Retrieve Authorization header from the request made in your tab. You'll have a faster way to paste or go to JWT.io",
-  "version": "1.1",
+  "version": "1.2",
   "manifest_version": 3,
   "devtools_page": "devtools/devtools.html",
   "icons": {

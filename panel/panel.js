@@ -16,13 +16,13 @@ function extractTokensFromHAR(requests) {
   return requests.entries
     .filter((entry) =>
       entry.request.headers.some(
-        (header) => header.name.toLowerCase() === "authorization"
-      )
+        (header) => header.name.toLowerCase() === "authorization",
+      ),
     )
     .map((entry) => {
       const url = entry.request.url;
       const authorizationHeader = entry.request.headers.find(
-        (header) => header.name.toLowerCase() === "authorization"
+        (header) => header.name.toLowerCase() === "authorization",
       ).value;
       return { url, authorizationHeader };
     });
@@ -46,12 +46,13 @@ function displayTokens(tokens) {
       "uk-margin-right",
       "uk-button-primary",
       "uk-text-default",
-      "uk-text-capitalize"
+      "uk-text-capitalize",
+      "uk-margin-top",
     );
     inspectButton.innerText = "Inspect token in jwt.io";
     inspectButton.addEventListener("click", () => {
       const jwtInspectUrl = `https://jwt.io/?token=${encodeURIComponent(
-        getToken(token)
+        getToken(token),
       )}`;
       window.open(jwtInspectUrl, "_blank");
     });
@@ -61,12 +62,18 @@ function displayTokens(tokens) {
       "uk-button",
       "uk-button-secondary",
       "uk-text-default",
-      "uk-text-capitalize"
+      "uk-text-capitalize",
+      "uk-margin-top",
     );
     copyButton.innerText = "Copy token";
     copyButton.addEventListener("click", () => {
       copyToClipboard(getToken(token));
-      alert("Token copied");
+      const notificationContainer = (document.getElementById(
+        "notification-container",
+      ).innerHTML = "Token copied successfully.");
+      setTimeout(() => {
+        notificationContainer.innerHTML = "";
+      }, 3000);
     });
 
     container.appendChild(card);
@@ -97,7 +104,7 @@ function updatePanel() {
 
   chrome.devtools.network.getHAR(function (requests) {
     const includeBearerToggle = document.getElementById(
-      "include-bearer-toggle"
+      "include-bearer-toggle",
     );
     includeBearerToggle.addEventListener("change", () => {
       document.getElementById("output-container").innerHTML = "";
