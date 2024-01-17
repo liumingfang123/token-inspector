@@ -15,3 +15,5 @@ Token Extractor, a robust Chrome extension, streamlines the extraction of author
 - Token Inspection: Dive deeper into extracted tokens by inspecting them on jwt.io. Understand token structures and contents effortlessly.
 
 Save time and simplify your development workflow with Token Extractor. Install the extension now to streamline your token extraction process. 🛠️
+
+‼️ There are no more recent updates because the project already fulfills the purpose for which it was created, if at any time there is any feature deprecated by the Chrome API or any other reason I will be attentive to update it.
