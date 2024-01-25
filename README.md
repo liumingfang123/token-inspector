@@ -1,5 +1,5 @@
-# 🚀 Token Inspector Devtool
-Token Extractor, a robust Chrome extension, streamlines the extraction of authorization tokens from HTTP requests within Chrome DevTools. It simplifies the identification of requests with authorization headers, token extraction, and various essential tasks for developers.
+# 🚀 Token Devtools Inspector
+A robust Chrome extension, streamlines the extraction of authorization tokens from HTTP requests within Chrome DevTools. It simplifies the identification of requests with authorization headers, token extraction, and various essential tasks for developers.
 
 ## 🎯 How to Use
 1. Open Chrome DevTools
