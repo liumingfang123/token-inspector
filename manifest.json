@@ -1,7 +1,7 @@
 {
   "name": "Token Devtools Inspector",
   "description": "Retrieve Authorization header from the request made in your tab. You'll have a faster way to paste or go to JWT.io",
-  "version": "1.2",
+  "version": "1.2.1",
   "manifest_version": 3,
   "devtools_page": "devtools/devtools.html",
   "icons": {
@@ -9,5 +9,11 @@
     "32": "icons/icon32.png",
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "token-devtools-inspector@gmail.com"
+    }
   }
+  
 }
