@@ -14,6 +14,9 @@ A robust Chrome extension, streamlines the extraction of authorization tokens fr
 - Enhanced Workflow: Copy extracted tokens to the clipboard with a single click for swift integration into applications and APIs.
 - Token Inspection: Dive deeper into extracted tokens by inspecting them on jwt.io. Understand token structures and contents effortlessly.
 
+## 🌐 Browser support
+Available for [Chrome](https://chromewebstore.google.com/detail/token-devtools-inspector/enlnbonndfjonmelmplbmgnobjffbhoj) & [Firefox](https://addons.mozilla.org/es/firefox/addon/token-devtools-inspector/)!
+
 Save time and simplify your development workflow with Token Extractor. Install the extension now to streamline your token extraction process. 🛠️
 
 ‼️ There are no more recent updates because the project already fulfills the purpose for which it was created, if at any time there is any feature deprecated by the Chrome API or any other reason I will be attentive to update it.
